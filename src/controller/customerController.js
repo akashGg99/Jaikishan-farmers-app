@@ -5,7 +5,7 @@ const getCustomer = async function(req,res){
 
         const custData = await customerModel.find({status:"Active"})
 
-        res.status(200).send({status:true,message:"Success", data:custData})
+        return res.status(200).send({status:true,message:"Success", data:custData})
     }
     catch(err){
         res.status(500).send({status:false,message:err.message})
@@ -19,7 +19,7 @@ const deletecustomer = async function(req,res){
         // if(sdc){}
         const delCust = await customerModel.deleteOne({ _id:data1 })
 
-        res.status(200).send({status:true,message:"Successfully deleted.", data:delCust})
+        return res.status(200).send({status:true,message:"Successfully deleted.", data:delCust})
     } 
     catch(err){
         res.status(500).send({status:false,message:err.message})
@@ -34,6 +34,7 @@ const createCust = async function(req,res){
         const data1 = req.body
 
         const createddata=await customerModel.create(data1)
+        return res.status(200).send({status:true,message:"Success", data:crea})
     }
     catch(err){
         res.status(500).send({status:false,message:err.message})
